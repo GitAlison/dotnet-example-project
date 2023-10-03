@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class Tag : BaseEntity
 {
@@ -10,7 +11,9 @@ public class Tag : BaseEntity
     [Required]
     public string Color { get; set; }
 
-    public int UserId { get; set; }
-    public User User { get; set; } = null;
+
+    [ForeignKey("ApplicationUser")]
+    public string ApplicationUserId { get; set; } = null;
+    public ApplicationUser ApplicationUser { get; set; } = null;
 
 }
