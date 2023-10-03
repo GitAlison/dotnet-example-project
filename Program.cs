@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -154,6 +155,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+
 }
 app.UseCors(x => x
                     .AllowAnyMethod()
@@ -161,7 +166,18 @@ app.UseCors(x => x
                     .SetIsOriginAllowed(origin => true) // allow any origin
                                                         //.WithOrigins("https://localhost:44351")); // Allow only this origin can also have multiple origins separated with comma
                     .AllowCredentials());
+
+
+
+// MVC
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
