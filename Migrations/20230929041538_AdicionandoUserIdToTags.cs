@@ -5,7 +5,7 @@
 namespace appflow.Migrations
 {
     /// <inheritdoc />
-    public partial class AddTableQuickMessageHistoryCUstomer : Migration
+    public partial class AdicionandoUserIdToTags : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

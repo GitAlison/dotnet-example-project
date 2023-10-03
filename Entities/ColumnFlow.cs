@@ -10,9 +10,7 @@ public class ColumnFlow : BaseEntity
     [Required]
     public string Title { get; set; }
 
-
-    public int userId { get; set; }
-    public User User { get; set; }
+    public ApplicationUser User { get; set; }
 
     public ICollection<CustomerService> customerServices{ get; set; } = new List<CustomerService>();
 
