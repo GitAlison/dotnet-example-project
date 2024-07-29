@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class ColumnFlow : BaseEntity
 {
@@ -10,6 +11,9 @@ public class ColumnFlow : BaseEntity
     [Required]
     public string Title { get; set; }
 
+
+    [ForeignKey("ApplicationUser")]
+    public string ApplicationUserId { get; set; } = null;
     public ApplicationUser User { get; set; }
 
     public ICollection<CustomerService> customerServices{ get; set; } = new List<CustomerService>();
